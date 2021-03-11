@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-  
+    this.authService.fillAuthenticationData();
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;

@@ -11,10 +11,7 @@ export class DefaultLayoutComponent {
   public navItems = navItems;
   userName = null;
   constructor(private authService: AuthService) {
-    if(this.authService.authentication){
-      this.userName = (this.authService.authentication.userName)
-    }
-    
+    this.userName = (this.authService.authentication.userName)
 
   }
   toggleMinimize(e) {

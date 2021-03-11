@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import { AuthService } from '../../views/shared/services/auth.service';
 import { navItems } from '../../_nav';
 
 @Component({
@@ -9,19 +8,8 @@ import { navItems } from '../../_nav';
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public navItems = navItems;
-  userName = null;
-  constructor(private authService: AuthService) {
-    if(this.authService.authentication){
-      this.userName = (this.authService.authentication.userName)
-    }
-    
 
-  }
   toggleMinimize(e) {
     this.sidebarMinimized = e;
-  }
-
-  logout(){
-    this.authService.logOut();
   }
 }

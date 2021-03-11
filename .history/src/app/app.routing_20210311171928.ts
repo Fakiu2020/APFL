@@ -50,7 +50,8 @@ export const routes: Routes = [
     component: DefaultLayoutComponent,
     canActivate: [AuthGuardService],    
     data: {
-      title: 'Home',     
+      title: 'Home',
+      claims: ['Admin']
     },
     children: [
       {

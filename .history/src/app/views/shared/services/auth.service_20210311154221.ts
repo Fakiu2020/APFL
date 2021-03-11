@@ -3,24 +3,16 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Authentication } from '../../models/authentication';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   baseApiUrl = environment.baseUrl + 'token';
-  authentication = new Authentication();
-  constructor(private http: HttpClient, private router: Router ) {
-    this.authentication = JSON.parse(localStorage.getItem('authorizationData'));
+  authentication :Authentication;
+  constructor(private http: HttpClient) { 
+   this.authentication = JSON.parse(localStorage.getItem('authorizationData')); 
   }
-
-
-  logOut() {
-    localStorage.setItem("authorizationData", JSON.stringify({}));
-    this.authentication = new Authentication();
-    this.router.navigate(['login']);
-  };
 
   login(loginData) {
     const data = "grant_type=password&username=" + encodeURIComponent(loginData.userName) +
@@ -44,13 +36,9 @@ export class AuthService {
               referralToken: response.referralToken
             };
             this.authentication = dataResponse
-            localStorage.setItem('authorizationData', JSON.stringify(dataResponse));
+            localStorage.setItem('authorizationData',  JSON.stringify(dataResponse));
           }
         })
       );
-  }
-
-  isAuthenticated(){
-    return this.authentication.token != null ;
   }
 }

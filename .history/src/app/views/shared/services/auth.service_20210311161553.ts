@@ -15,11 +15,14 @@ export class AuthService {
     this.authentication = JSON.parse(localStorage.getItem('authorizationData'));
   }
 
+  fillAuthenticationData() {
+    
+  }
 
   logOut() {
-    localStorage.setItem("authorizationData", JSON.stringify({}));
+    localStorage.remove('authorizationData');
     this.authentication = new Authentication();
-    this.router.navigate(['login']);
+    this.router.navigate(['quotes']);
   };
 
   login(loginData) {
@@ -48,9 +51,5 @@ export class AuthService {
           }
         })
       );
-  }
-
-  isAuthenticated(){
-    return this.authentication.token != null ;
   }
 }

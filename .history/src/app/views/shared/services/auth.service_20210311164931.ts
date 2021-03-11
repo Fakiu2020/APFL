@@ -50,7 +50,7 @@ export class AuthService {
       );
   }
 
-  isAuthenticated(){
-    return this.authentication.token != null ;
-  }
+  // isAuthenticated(){
+  //   return this.authentication.token != null ;
+  // }
 }

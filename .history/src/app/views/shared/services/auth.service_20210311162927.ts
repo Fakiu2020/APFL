@@ -19,7 +19,7 @@ export class AuthService {
   logOut() {
     localStorage.setItem("authorizationData", JSON.stringify({}));
     this.authentication = new Authentication();
-    this.router.navigate(['login']);
+    this.router.navigate(['quotes']);
   };
 
   login(loginData) {
@@ -48,9 +48,5 @@ export class AuthService {
           }
         })
       );
-  }
-
-  isAuthenticated(){
-    return this.authentication.token != null ;
   }
 }

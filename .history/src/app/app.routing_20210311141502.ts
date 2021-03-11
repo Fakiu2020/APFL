@@ -8,8 +8,6 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
-import { AuthGuardService } from './views/shared/guards/auth-guard';
-
 
 export const routes: Routes = [
   {
@@ -48,15 +46,13 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    canActivate: [AuthGuardService],    
     data: {
-      title: 'Home',     
+      title: 'Home'
     },
     children: [
       {
         path: 'base',
-        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule),
-        
+        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
       },
       {
         path: 'buttons',

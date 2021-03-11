@@ -3,7 +3,6 @@ import { Router, NavigationEnd } from '@angular/router';
 
 import { IconSetService } from '@coreui/icons-angular';
 import { freeSet } from '@coreui/icons';
-import { AuthService } from './views/shared/services/auth.service';
 
 @Component({
   // tslint:disable-next-line
@@ -14,15 +13,13 @@ import { AuthService } from './views/shared/services/auth.service';
 export class AppComponent implements OnInit {
   constructor(
     private router: Router,
-    public iconSet: IconSetService,
-    private authService: AuthService
+    public iconSet: IconSetService
   ) {
     // iconSet singleton
     iconSet.icons = { ...freeSet };
   }
 
   ngOnInit() {
-  
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;

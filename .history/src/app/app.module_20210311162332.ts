@@ -47,9 +47,6 @@ import { ModalDeleteComponent } from './views/shared/modal-delete/modal-delete.c
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './views/shared/interceptors/token-interceptor';
-import { AuthService } from './views/shared/services/auth.service';
-import { AuthGuardService } from './views/shared/guards/auth-guard';
-
 
 @NgModule({
   imports: [
@@ -75,7 +72,7 @@ import { AuthGuardService } from './views/shared/guards/auth-guard';
       timeOut: 2000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
-      progressBar: true
+      progressBar : true
     }),
   ],
   declarations: [
@@ -93,11 +90,9 @@ import { AuthGuardService } from './views/shared/guards/auth-guard';
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    AuthGuardService,
-
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     IconSetService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

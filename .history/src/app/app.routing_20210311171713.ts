@@ -48,9 +48,9 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    canActivate: [AuthGuardService],    
+    canActivate: [AuthGuardService],
     data: {
-      title: 'Home',     
+      title: 'Home'
     },
     children: [
       {

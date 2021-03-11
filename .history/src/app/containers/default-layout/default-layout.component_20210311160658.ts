@@ -9,19 +9,12 @@ import { navItems } from '../../_nav';
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public navItems = navItems;
-  userName = null;
-  constructor(private authService: AuthService) {
-    if(this.authService.authentication){
-      this.userName = (this.authService.authentication.userName)
-    }
-    
+  
+  constructor(public authService: AuthService) {
+    console.log(this.authService.authentication)
 
   }
   toggleMinimize(e) {
     this.sidebarMinimized = e;
-  }
-
-  logout(){
-    this.authService.logOut();
   }
 }

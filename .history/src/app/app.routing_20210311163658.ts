@@ -10,7 +10,6 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { AuthGuardService } from './views/shared/guards/auth-guard';
 
-
 export const routes: Routes = [
   {
     path: '',
@@ -48,15 +47,14 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    canActivate: [AuthGuardService],    
+    //canActivate: [AuthGuardService],
     data: {
-      title: 'Home',     
+      title: 'Home'
     },
     children: [
       {
         path: 'base',
-        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule),
-        
+        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
       },
       {
         path: 'buttons',
