@@ -46,7 +46,10 @@
               <div class="row">
                 <div class="col-12 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
                   
-                  <button  type="submit" class="btn btn-primary float-right ml-1"><i class="fa fa-save"></i>&nbsp;Save</button>
+                  <button  [disabled]="isLoading" type="submit" class="btn btn-primary float-right ml-1">
+                    <i *ngIf="!isLoading" class="fa fa-save"></i>
+                    <i  *ngIf="isLoading" class="fa fa-spinner fa-spin fa-3x fa-fw" style="font-size: 20px;"></i> &nbsp;Save
+                  </button>
                   <a  routerLink="/quotes" type="button" class="btn btn-secondary float-right"><i class="fa fa-close"></i>&nbsp;Cancel</a>
                 </div>
               </div>

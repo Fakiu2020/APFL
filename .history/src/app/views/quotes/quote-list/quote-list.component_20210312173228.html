@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-12 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+    <a routerLink="create" type="button" class="btn btn-primary"
+      ><i class="fa fa-plus"></i>&nbsp;Create</a
+    >
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Quote List
+      </div>
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col col-md-4 offset-md-6">
+            <div  class="input-group">
+              <div class="input-group-prepend">
+                <span  class="input-group-text"
+                  ><i  class="cil-search"></i
+                ></span>
+              </div>
+              <input
+                
+                type="text"
+                placeholder="Search by Description or Author"
+                class="form-control ng-untouched ng-pristine ng-valid"
+              />
+            </div>
+          </div>
+
+          <div class="col col-md-3 ">
+            <button  [disabled]="isLoading" type="submit" class="btn btn-primary float-right ml-1">
+              <i  class="fa fa-save"></i>
+               &nbsp;Search
+            </button>
+          </div>
+
+
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Author</th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-center" *ngIf="isLoading">
+              <td colspan="12">
+                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+              </td>
+            </tr>
+            <tr *ngFor="let item of quotes">
+              <td>{{ item.Author }}</td>
+              <td>{{ item.Description }}</td>
+              <td>
+                <div class="btn-group btn-group-sm" role="group">
+                  <a
+                    [routerLink]="['edit/', item.Id]"
+                    type="button"
+                    class="btn btn-sm btn-primary mr-3"
+                  >
+                    <i class="fa fa-pencil"></i>
+                  </a>
+
+                  <button
+                    (click)="openRemoveModal(item.Id)"
+                    type="button"
+                    class="btn btn-sm btn-danger"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <pagination
+          class="d-flex justify-content-center"
+          [totalItems]="filters.totalItems"
+          [itemsPerPage]="filters.pageSize"
+          (pageChanged)="pageChanged($event)"
+          [boundaryLinks]="true"
+          [directionLinks]="true"
+          [maxSize]="10"
+          previousText="&lsaquo;"
+          nextText="&rsaquo;"
+        >
+        </pagination>
+      </div>
+    </div>
+  </div>
+</div>

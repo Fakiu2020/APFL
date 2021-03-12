@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../views/shared/services/auth.service';
 import { navItems } from '../../_nav';
 
@@ -10,7 +11,7 @@ export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public navItems = navItems;
   userName = null;
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     if(this.authService.authentication){
       this.userName = (this.authService.authentication.userName)
     }
@@ -23,5 +24,6 @@ export class DefaultLayoutComponent {
 
   logout(){
     this.authService.logOut();
+    this.router.navigate(['login']);
   }
 }

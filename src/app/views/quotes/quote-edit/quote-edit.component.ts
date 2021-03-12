@@ -11,6 +11,7 @@ import { QuoteService } from '../service/quote.service';
 })
 export class QuoteEditComponent implements OnInit {
   quoteForm: FormGroup;
+  isLoading = false;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -24,7 +25,7 @@ export class QuoteEditComponent implements OnInit {
   ngOnInit() {
     this.quoteService.getById(this.route.snapshot.params['id']).subscribe(
       (data) => {
-       
+
         this.quoteForm = this.formBuilder.group({
           id: [data.Id, Validators.required], 
           description: [data.Description, Validators.required],
@@ -38,12 +39,13 @@ export class QuoteEditComponent implements OnInit {
 
   update() {
     if (this.quoteForm.invalid) {return; }
+    this.isLoading = true;
     this.quoteService.update(this.quoteForm.value).subscribe(data => {
       
       this.toastr.success('Updated Successfully');
       this.router.navigate(['quotes']);
     }, error => {
-
+      this.isLoading = false;
     });
 
   }

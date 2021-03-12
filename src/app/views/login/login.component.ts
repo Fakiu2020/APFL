@@ -10,6 +10,7 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class LoginComponent implements OnInit { 
   loginForm: FormGroup;
+  isLoading = false;
 
   /**
    *
@@ -38,11 +39,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    this.isLoading = true;
     this.authService.login(this.loginForm.value).subscribe(
       (data) => {
         this.router.navigate(['quotes']);
+        this.isLoading = false;
       },
-      (error) => {}
+      (error) => {this.isLoading = false;}
     );
   }
 }

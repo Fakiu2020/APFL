@@ -49,6 +49,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './views/shared/interceptors/token-interceptor';
 import { AuthService } from './views/shared/services/auth.service';
 import { AuthGuardService } from './views/shared/guards/auth-guard';
+import { P401Component } from './views/error/401.component';
+import { HttpErrorInterceptor } from './views/shared/interceptors/error.interceptor';
 
 
 @NgModule({
@@ -83,6 +85,7 @@ import { AuthGuardService } from './views/shared/guards/auth-guard';
     ...APP_CONTAINERS,
     P404Component,
     P500Component,
+    P401Component,
     LoginComponent,
     RegisterComponent,
     ModalDeleteComponent
@@ -94,7 +97,11 @@ import { AuthGuardService } from './views/shared/guards/auth-guard';
       useClass: HashLocationStrategy
     },
     AuthGuardService,
-
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     IconSetService,
   ],

@@ -6,7 +6,7 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
-                <form [formGroup]="loginForm"
+                <form [formGroup]="loginForm" 
                 (ngSubmit)="login()"
                 #ngForm="ngForm">
                   <h1 class="text-center">Login</h1>
@@ -48,11 +48,13 @@
                   </div>
                   <div class="row">
                     
-                    <div class="col-6">
+                    <!-- <div class="col-6">
                       <button type="button" class="btn btn-link px-0">Forgot password?</button>
-                    </div>
-                    <div class="col-6 text-right">
-                      <button type="submit" class="btn btn-primary px-4">Login</button>
+                    </div> -->
+                    <div class="col-12 text-right">
+                      <button  [disabled]="isLoading" type="submit" class="btn btn-primary px-4">
+                        <i  *ngIf="isLoading" class="fa fa-spinner fa-spin fa-3x fa-fw" style="font-size: 20px;"></i>   
+                        Login</button>
                     </div>
                   </div>
                 </form>

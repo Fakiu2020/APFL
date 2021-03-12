@@ -17,6 +17,7 @@ import { QuoteService } from '../service/quote.service';
 })
 export class QuoteCreateComponent implements AfterViewInit, OnInit {
   quoteForm: FormGroup;
+  isLoading = false;
   @ViewChild('myinput') myInputField: ElementRef;
 
   constructor(
@@ -45,12 +46,15 @@ export class QuoteCreateComponent implements AfterViewInit, OnInit {
     if (this.quoteForm.invalid) {
       return;
     }
+    this.isLoading = true;
     this.quoteService.create(this.quoteForm.value).subscribe(
       (data) => {
         this.toastr.success('Saved Successfully');
         this.router.navigate(['quotes']);
       },
-      (error) => {}
+      (error) => {
+        this.isLoading = false;
+      }
     );
   }
 }

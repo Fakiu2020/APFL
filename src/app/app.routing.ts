@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
+import { P401Component } from './views/error/401.component';
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
@@ -14,7 +15,7 @@ import { AuthGuardService } from './views/shared/guards/auth-guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'quotes',
     pathMatch: 'full',
   },
   {
@@ -22,6 +23,13 @@ export const routes: Routes = [
     component: P404Component,
     data: {
       title: 'Page 404'
+    }
+  },
+  {
+    path: '401',
+    component: P401Component,
+    data: {
+      title: 'Page 401'
     }
   },
   {
@@ -48,15 +56,15 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    canActivate: [AuthGuardService],    
+    canActivate: [AuthGuardService],
     data: {
-      title: 'Home',     
+      title: 'Home',
     },
     children: [
       {
         path: 'base',
         loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule),
-        
+
       },
       {
         path: 'buttons',
